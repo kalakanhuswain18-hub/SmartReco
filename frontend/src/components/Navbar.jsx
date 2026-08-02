@@ -1,33 +1,48 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <nav className="bg-white shadow">
+    <nav className="navbar navbar-expand-lg bg-white shadow-sm">
+      <div className="container">
 
-      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-
-        <h1 className="text-3xl font-bold text-blue-600">
+        <Link className="navbar-brand fw-bold fs-2" to="/">
           SmartReco
-        </h1>
+        </Link>
 
-        <div className="flex gap-8">
+        <button
+  className="navbar-toggler"
+  type="button"
+  onClick={() => setMenuOpen(!menuOpen)}
+>
+  ☰
+</button>
+      <div
+  className={`${
+    menuOpen ? "d-block" : "d-none"
+  } d-lg-flex w-100`}
+>
+         <div className="ms-lg-auto d-flex flex-column flex-lg-row gap-2 mt-3 mt-lg-0">
+            <Link
+  to="/login"
+  className="btn btn-outline-primary w-lg-auto"
+>
+  Login
+</Link>
 
-          <Link to="/" className="hover:text-blue-600">
-            Home
-          </Link>
+          <Link
+  to="/register"
+  className="btn btn-primary w-lg-auto"
+>
+  Register
+</Link>
 
-          <Link to="/dashboard" className="hover:text-blue-600">
-            Dashboard
-          </Link>
-
-          <Link to="/login" className="hover:text-blue-600">
-            Logout
-          </Link>
-
+          </div>
         </div>
 
       </div>
-
     </nav>
   );
 }

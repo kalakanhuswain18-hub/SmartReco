@@ -1,129 +1,150 @@
+import { Link } from "react-router-dom";
+import Navbar from "../components/Navbar";
 import heroImage from "../assets/ai-shopping.svg";
+
 function Landing() {
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="bg-light">
 
-      <nav className="flex justify-between items-center px-10 py-5 bg-white shadow-sm">
+      <Navbar />
 
-        <h1 className="text-3xl font-bold text-blue-600">
-          SmartReco
-        </h1>
+      <section className="container py-5">
 
-        <div className="space-x-4">
-          <button className="px-5 py-2 rounded-lg text-blue-600 border border-blue-600">
-            Login
-          </button>
+        <div className="row align-items-center g-5">
 
-          <button className="px-5 py-2 rounded-lg bg-blue-600 text-white">
-            Register
-          </button>
+          <div className="col-lg-6">
+
+            <h1 className="display-4 fw-bold mb-4">
+              AI Powered Recommendation Platform
+            </h1>
+
+            <p className="lead text-secondary mb-4">
+              Discover products tailored to your interests using intelligent
+              recommendation and user behaviour analysis.
+            </p>
+
+            <Link
+              to="/login"
+              className="btn btn-primary btn-lg px-4"
+            >
+              Get Started
+            </Link>
+
+          </div>
+
+          <div className="col-lg-6 text-center">
+
+            <img
+              src={heroImage}
+              alt="AI Recommendation"
+              className="img-fluid"
+              style={{ maxHeight: "500px" }}
+            />
+
+          </div>
+
         </div>
 
-      </nav>
+      </section>
 
-     <section className="max-w-7xl mx-auto px-8 py-20">
+      
 
-  <div className="grid md:grid-cols-2 gap-16 items-center">
+      <section className="container py-5">
 
-    <div  className="space-y-8">
+        <h2 className="text-center fw-bold mb-5">
+          Why Choose SmartReco?
+        </h2>
 
-     <h1 className="text-6xl font-bold leading-tight text-slate-800">
-        AI Powered Recommendation Platform
-      </h1>
+        <div className="row g-4">
 
-      <p className="text-xl leading-9 text-slate-600">
-        Discover products tailored to your interests using intelligent
-        recommendation and user behaviour analysis.
-      </p>
+          <div className="col-md-4">
 
-     <button
-    onClick={() => alert("Login page coming soon")}
-    className="px-8 py-4 bg-blue-600 hover:bg-blue-700 transition rounded-xl text-white text-lg font-medium"
->
-    Get Started
-</button>
+           <div className="card feature-card shadow h-100 border-0">
 
-    </div>
+              <div className="card-body">
 
-   <div className="flex justify-center">
+                <h4 className="fw-bold">
+                  AI Recommendation
+                </h4>
 
-      <img
-        src={heroImage}
-        alt="AI Recommendation"
-        className="w-[520px]"
-      />
+                <p className="text-secondary mt-3">
+                  Recommend products intelligently based on user interests,
+                  browsing history and behaviour.
+                </p>
 
-</div>
+              </div>
 
-  </div>
+            </div>
 
-</section>
-<section className="max-w-7xl mx-auto px-8 py-24">
+          </div>
 
-  <h2 className="text-4xl font-bold text-center text-slate-800 mb-14">
-    Why Choose SmartReco?
-  </h2>
+          <div className="col-md-4">
 
-  <div className="grid md:grid-cols-3 gap-8">
+            <div className="card feature-card shadow h-100 border-0">
 
-    <div className="bg-white rounded-2xl shadow-lg p-8 hover:-translate-y-2 transition duration-300">
+              <div className="card-body">
 
-      <h3 className="text-2xl font-semibold mb-4">
-        AI Recommendation
-      </h3>
+                <h4 className="fw-bold">
+                  Behaviour Tracking
+                </h4>
 
-      <p className="text-slate-600 leading-7">
-        Recommend products intelligently based on browsing history and user interests.
-      </p>
+                <p className="text-secondary mt-3">
+                  Track clicks, searches, views and time spent for better
+                  recommendations.
+                </p>
 
-    </div>
+              </div>
 
-    <div className="bg-white rounded-2xl shadow-lg p-8 hover:-translate-y-2 transition duration-300">
+            </div>
 
-      <h3 className="text-2xl font-semibold mb-4">
-        Behaviour Tracking
-      </h3>
+          </div>
 
-      <p className="text-slate-600 leading-7">
-        Monitor user interactions like clicks, views and time spent to improve recommendations.
-      </p>
+          <div className="col-md-4">
 
-    </div>
+           <div className="card feature-card shadow h-100 border-0">
 
-    <div className="bg-white rounded-2xl shadow-lg p-8 hover:-translate-y-2 transition duration-300">
+              <div className="card-body">
 
-      <h3 className="text-2xl font-semibold mb-4">
-        Personalized Experience
-      </h3>
+                <h4 className="fw-bold">
+                  Personalized Experience
+                </h4>
 
-      <p className="text-slate-600 leading-7">
-        Every user receives unique product suggestions tailored to their activity.
-      </p>
+                <p className="text-secondary mt-3">
+                  Every user receives personalized recommendations generated
+                  using AI.
+                </p>
 
-    </div>
+              </div>
 
-  </div>
+            </div>
 
-</section>
-<footer className="bg-slate-900 text-white py-8">
+          </div>
 
-  <div className="max-w-7xl mx-auto text-center">
+        </div>
 
-    <h2 className="text-2xl font-bold">
-      SmartReco
-    </h2>
+      </section>
 
-    <p className="mt-3 text-slate-400">
-      AI Powered Recommendation Platform
-    </p>
+     
 
-    <p className="mt-6 text-sm text-slate-500">
-      © 2026 SmartReco. All rights reserved.
-    </p>
+      <footer className="bg-dark text-white py-4 mt-5">
 
-  </div>
+        <div className="container text-center">
 
-</footer>
+          <h3 className="fw-bold">
+            SmartReco
+          </h3>
+
+          <p className="text-light">
+            AI Powered Recommendation Platform
+          </p>
+
+          <small className="text-secondary">
+            © 2026 SmartReco. All Rights Reserved.
+          </small>
+
+        </div>
+
+      </footer>
 
     </div>
   );

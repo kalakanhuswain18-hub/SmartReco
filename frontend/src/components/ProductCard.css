@@ -36,3 +36,228 @@
 .view-btn {
     margin-top: auto;
 }
+/* Wishlist Button */
+
+.wishlist-btn{
+    position:absolute;
+    top:15px;
+    right:15px;
+    width:50px;
+    height:50px;
+    border:none;
+    border-radius:50%;
+    background:#fff;
+    box-shadow:0 5px 20px rgba(0,0,0,.15);
+    cursor:pointer;
+    overflow:hidden;
+    z-index:10;
+    transition:.3s;
+}
+
+.wishlist-btn span:first-child{
+    font-size:25px;
+    color:#888;
+    display:inline-block;
+    transition:.3s;
+}
+
+.wishlist-btn.active span:first-child{
+    color:#ff1744;
+}
+
+.heart-pop{
+    animation:heartPop .55s cubic-bezier(.17,.89,.32,1.49);
+}
+
+@keyframes heartPop{
+
+0%{
+transform:scale(1);
+}
+
+20%{
+transform:scale(1.8) rotate(-15deg);
+}
+
+40%{
+transform:scale(.7) rotate(15deg);
+}
+
+60%{
+transform:scale(1.5);
+}
+
+80%{
+transform:scale(.9);
+}
+
+100%{
+transform:scale(1);
+}
+
+}
+
+/* Ripple */
+
+.ripple{
+position:absolute;
+width:15px;
+height:15px;
+background:#ff1744;
+border-radius:50%;
+left:50%;
+top:50%;
+transform:translate(-50%,-50%) scale(0);
+opacity:.4;
+}
+
+.wishlist-btn.active .ripple{
+animation:ripple .6s ease;
+}
+
+@keyframes ripple{
+
+0%{
+transform:translate(-50%,-50%) scale(0);
+opacity:.5;
+}
+
+100%{
+transform:translate(-50%,-50%) scale(4);
+opacity:0;
+}
+
+}
+
+/* Sparkles */
+
+.spark{
+position:absolute;
+width:6px;
+height:6px;
+background:#ff1744;
+border-radius:50%;
+opacity:0;
+}
+
+.wishlist-btn.active .spark{
+animation:spark .7s ease forwards;
+}
+
+.spark1{top:8px;left:22px;}
+.spark2{top:18px;right:8px;}
+.spark3{bottom:10px;right:15px;}
+.spark4{bottom:8px;left:20px;}
+.spark5{left:6px;top:20px;}
+.spark6{right:6px;top:28px;}
+
+@keyframes spark{
+
+0%{
+opacity:1;
+transform:scale(0);
+}
+
+100%{
+opacity:0;
+transform:translateY(-18px) scale(2);
+}
+
+}
+
+/* Hover */
+
+.wishlist-btn:hover{
+
+transform:scale(1.12);
+
+box-shadow:0 8px 25px rgba(255,23,68,.35);
+
+}
+/* Floating Heart */
+
+.wishlist-heart{
+
+    position:absolute;
+
+    top:15px;
+
+    right:18px;
+
+    font-size:34px;
+
+    color:#8d8d8d;
+
+    cursor:pointer;
+
+    z-index:100;
+
+    user-select:none;
+
+    transition:.25s;
+
+}
+
+/* Hover */
+
+.wishlist-heart:hover{
+
+    transform:scale(1.15);
+
+}
+
+/* Active */
+
+.wishlist-heart.active{
+
+    color:#ff1744;
+
+}
+
+/* Pop Animation */
+
+.heart-pop{
+
+    animation:heartPop .7s cubic-bezier(.17,.89,.32,1.49);
+
+}
+
+@keyframes heartPop{
+
+0%{
+
+transform:scale(1);
+
+}
+
+18%{
+
+transform:scale(2);
+
+}
+
+35%{
+
+transform:scale(.75) rotate(-12deg);
+
+}
+
+55%{
+
+transform:scale(1.5) rotate(10deg);
+
+}
+
+72%{
+
+transform:scale(.9);
+
+}
+
+100%{
+
+transform:scale(1);
+
+}
+
+}
