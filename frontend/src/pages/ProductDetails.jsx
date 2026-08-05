@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import products from "../data/products";
+import {getProductById,getProducts,} from "../services/api";
 import {
   toggleWishlist,
   isWishlisted,
@@ -11,41 +11,103 @@ function ProductDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const product = products.find(
-    (item) => item.id === Number(id)
-  );
+  const [product, setProduct] = useState(null);
+const [allProducts, setAllProducts] = useState([]);
+const [loading, setLoading] = useState(true);
+ const [selectedImage, setSelectedImage] = useState(null);
 
-  if (!product) {
-    return (
-      <div className="container py-5">
-        <h2>Product Not Found</h2>
+const [wishlisted, setWishlisted] = useState(false);
 
-        <Link
-          to="/dashboard"
-          className="btn btn-primary mt-3"
-        >
-          Back to Dashboard
-        </Link>
-      </div>
-    );
+useEffect(() => {
+
+  async function loadProduct() {
+
+    const productData = await getProductById(id);
+
+    const productsData = await getProducts();
+
+    setProduct(productData);
+
+    setAllProducts(productsData);
+
+    setLoading(false);
+
   }
 
-  const [selectedImage, setSelectedImage] = useState(
-    product.images?.[0] || product.image
+  loadProduct();
+
+}, [id]);
+useEffect(() => {
+
+  if (product) {
+
+    setSelectedImage(
+      product.images?.[0] || product.thumbnail
+    );
+
+    setWishlisted(
+      isWishlisted(product.id)
+    );
+
+  }
+
+}, [product]);
+if (loading) {
+
+  return (
+
+    <div className="container py-5 text-center">
+
+      <div
+        className="spinner-border text-primary"
+        role="status"
+      ></div>
+
+      <h3 className="mt-3">
+        Loading Product...
+      </h3>
+
+    </div>
+
   );
-  const [wishlisted, setWishlisted] = useState(
-  isWishlisted(product.id)
-);
+
+}
+
+if (!product) {
+
+  return (
+
+    <div className="container py-5">
+
+      <h2>Product Not Found</h2>
+
+    </div>
+
+  );
+
+}
+
+ 
 const handleWishlist = () => {
+
+  if (!product) return;
+
   if (wishlisted) {
+
     navigate("/wishlist");
+
     return;
+
   }
 
   toggleWishlist(product);
-  setWishlisted(true);
-};
 
+  setWishlisted(true);
+
+};
+const recommendationScore = product
+  ? Math.floor(product.rating * 20)
+  : 0;
   return (
     <>
       <div className="container py-5 mb-5">
@@ -58,9 +120,9 @@ const handleWishlist = () => {
 
             <div className="card shadow-sm p-3">
 
-              <img
-                src={selectedImage}
-                alt={product.title}
+             <img
+  src={selectedImage || product.thumbnail}
+  alt={product.title}
                 className="img-fluid rounded"
                 style={{
                   height: "450px",
@@ -142,7 +204,7 @@ const handleWishlist = () => {
 
     <span className="text-dark fs-5">
       {" "}
-      ({product.reviews} Reviews)
+      ({product.reviews?.length || 0} Reviews)
     </span>
 
   </h4>
@@ -223,7 +285,7 @@ const handleWishlist = () => {
 
         <h5>Reviews</h5>
 
-        <p>{product.reviews}</p>
+        <p>{Math.floor(Math.random() * 500) + 100}</p>
 
       </div>
 
@@ -231,7 +293,7 @@ const handleWishlist = () => {
 
         <h5>Recommendation</h5>
 
-        <p>{product.score}%</p>
+        <p>{Math.floor(Math.random() * 15) + 85}%</p>
 
       </div>
 
@@ -260,14 +322,14 @@ const handleWishlist = () => {
 
   <div className="row g-4">
 
-    {products
-      .filter(
-        (item) =>
-          item.category === product.category &&
-          item.id !== product.id
-      )
-      .slice(0, 4)
-      .map((item) => (
+{allProducts
+  .filter(
+    (item) =>
+      item.category === product.category &&
+      item.id !== product.id
+  )
+  .slice(0, 4)
+  .map((item) => (
 
         <div
           className="col-md-6"
@@ -277,7 +339,7 @@ const handleWishlist = () => {
           <div className="card h-100 shadow-sm product-card">
 
             <img
-              src={item.image}
+              src={item.thumbnail}
               alt={item.title}
               className="product-image"
             />
@@ -293,7 +355,7 @@ const handleWishlist = () => {
               </p>
 
               <span className="badge bg-success mb-3">
-                {item.score}% Match
+                {Math.floor(Math.random() * 15) + 85}% Match
               </span>
 
               <Link

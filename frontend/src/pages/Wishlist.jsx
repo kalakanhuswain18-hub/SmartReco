@@ -48,15 +48,15 @@ function Wishlist() {
             >
               <div className="card shadow-sm h-100">
 
-                <img
-                  src={product.image}
-                  alt={product.title}
-                  className="card-img-top"
-                  style={{
-                    height: "220px",
-                    objectFit: "cover",
-                  }}
-                />
+            <img
+  src={product.thumbnail || product.images?.[0]}
+  alt={product.title}
+  className="card-img-top"
+  style={{
+    height: "220px",
+    objectFit: "cover",
+  }}
+/>
 
                 <div className="card-body">
 

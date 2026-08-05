@@ -6,6 +6,7 @@ import Dashboard from "./pages/Dashboard";
 import ProductDetails from "./pages/ProductDetails";
 import Wishlist from "./pages/Wishlist";
 import BuyNow from "./pages/BuyNow";
+import ApiTest from "./pages/ApiTest";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Route path="/product/:id" element={<ProductDetails />} />
       <Route path="/wishlist" element={<Wishlist />} />
       <Route path="/buy/:id" element={<BuyNow />} />
+      <Route path="/api-test" element={<ApiTest />} />
     </Routes>
   );
 }

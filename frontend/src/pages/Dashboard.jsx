@@ -1,11 +1,50 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
-import products from "../data/products";
 import { getBehavior } from "../utils/behavior";
+import { getProducts } from "../services/api";
+function formatCategory(category) {
 
+  return category
+    .split("-")
+    .map(
+      word =>
+        word.charAt(0).toUpperCase() +
+        word.slice(1)
+    )
+    .join(" ");
+
+}
 function Dashboard() {
+  const [products, setProducts] = useState([]);
+const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
+  useEffect(() => {
+
+  async function loadProducts() {
+
+    const data = await getProducts();
+
+    const mappedProducts = data.map((item) => ({
+      id: item.id,
+      title: item.title,
+      image: item.thumbnail,
+      images: item.images,
+      price: item.price,
+      description: item.description,
+      category: item.category,
+      rating: item.rating,
+      reviews: Math.floor(Math.random() * 500) + 100,
+      score: Math.floor(Math.random() * 15) + 85,
+    }));
+
+    setProducts(mappedProducts);
+    setLoading(false);
+  }
+
+  loadProducts();
+
+}, []);
 const filteredProducts = products.filter((product) => {
 
   const matchSearch =
@@ -33,6 +72,13 @@ const totalActivity =
   behavior.wishlist.length;
 
 const aiScore = Math.min(100, 60 + totalActivity * 5);
+if (loading) {
+  return (
+    <div className="container text-center py-5">
+      <h3>Loading Products...</h3>
+    </div>
+  );
+}
   return (
     <div className="container mt-4">
 
@@ -51,40 +97,24 @@ const aiScore = Math.min(100, 60 + totalActivity * 5);
         />
         <div className="d-flex gap-2 mt-4 mb-4 flex-wrap">
 
-  <button
-    className={`btn ${
-      selectedCategory === "All"
-        ? "btn-primary"
-        : "btn-outline-primary"
-    }`}
-    onClick={() => setSelectedCategory("All")}
-  >
-    All
-  </button>
+  {["All", ...new Set(products.map(product => product.category))].map((category) => (
 
   <button
+    key={formatCategory(category)}
     className={`btn ${
-      selectedCategory === "Electronics"
+      selectedCategory === category
         ? "btn-primary"
         : "btn-outline-primary"
     }`}
-    onClick={() => setSelectedCategory("Electronics")}
+    onClick={() => setSelectedCategory(category)}
   >
-    Electronics
+    {formatCategory(category)}
   </button>
 
-  <button
-    className={`btn ${
-      selectedCategory === "Education"
-        ? "btn-primary"
-        : "btn-outline-primary"
-    }`}
-    onClick={() => setSelectedCategory("Education")}
-  >
-    Education
-  </button>
+))}
 
 </div>
+
       </div>
       {search.trim() === "" && (
       <div className="mb-5">
@@ -160,7 +190,7 @@ products based on your searches, viewed items, and wishlist activity.
             className="progress-bar bg-success"
             style={{ width: `${aiScore}%` }}
           >
-            87%
+            {aiScore}%
           </div>
         </div>
 
