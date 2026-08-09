@@ -1,230 +1,113 @@
-# SmartReco – Behavioral AI Recommendation Agent
+# 🤖 SmartReco
 
-SmartReco is an AI-powered recommendation platform that analyzes user behavior and provides personalized product recommendations with AI-generated persuasive messages.
+### AI-Powered Personalized Product Recommendation Platform
 
-This project is being built for a Hackathon challenge focused on intelligent recommendation systems.
+SmartReco is an AI-powered product recommendation platform that personalizes the shopping experience based on user interests and behaviour.
+
+Instead of showing the same products to every user, SmartReco analyzes interactions such as product views, searches, wishlist activity and user interests to generate personalized product recommendations.
 
 ---
 
-# Features
+## 🚀 Live Project
 
-## Authentication
+> Add your deployed frontend URL here after deployment.
+
+**Frontend:** `Coming Soon`
+
+**Backend API:** `Coming Soon`
+
+---
+
+## 🎯 Problem Statement
+
+Traditional e-commerce platforms often provide the same product discovery experience to every user.
+
+This can make it difficult for users to discover products that are actually relevant to their interests.
+
+### SmartReco solves this by:
+
+- Tracking user behaviour
+- Understanding user interests
+- Generating personalized recommendations
+- Providing AI-powered recommendation explanations
+- Maintaining user-specific activity
+- Connecting recommendations with the shopping workflow
+
+---
+
+# ✨ Key Features
+
+## 🧠 AI-Powered Recommendations
+
+SmartReco generates product recommendations based on user interests and behavioural signals.
+
+The recommendation system can consider:
+
+- Product views
+- Searches
+- Categories
+- Wishlist activity
+- Previous interactions
+
+---
+
+## 👤 User Authentication
+
+Complete authentication flow with:
 
 - User Registration
 - User Login
-- React Router Navigation
-- Responsive Navbar
+- User Profile
+- Logout
 
-## Dashboard
-
-- Product Recommendation Dashboard
-- Search Products
-- AI Match Score
-- Responsive Product Cards
-- Local Product Images
-- Modern UI
-
-## Upcoming Features
-
-- Category Filter
-- Product Details Modal
-- Recently Viewed Products
-- User Behavior Tracking
-- AI Recommendation Engine
-- Personalized AI Messages
-- Backend API
-- MongoDB Integration
-- Gemini/OpenAI Integration
+Authentication is connected to the Flask backend.
 
 ---
 
-# Tech Stack
+## 📊 Behaviour Tracking
 
-## Frontend
+SmartReco records user interactions such as:
 
-- React.js
-- React Router DOM
-- Bootstrap 5
-- CSS3
+- Product views
+- Searches
+- Wishlist interactions
+- User activity
 
-## Backend (Upcoming)
-
-- Node.js
-- Express.js
-- MongoDB
-- Mongoose
-
-## AI
-
-- Google Gemini API
-- OpenAI API (Optional)
+These behavioural signals help improve personalization.
 
 ---
 
-# Project Structure
+## 🎯 Personalized Product Discovery
 
-```
-SmartReco
-│
-├── frontend
-│   │
-│   ├── public
-│   │
-│   ├── src
-│   │   │
-│   │   ├── assets
-│   │   │   └── images
-│   │   │       ├── mouse.jpg
-│   │   │       ├── keyboard.jpg
-│   │   │       ├── headphones.jpg
-│   │   │       ├── laptop.jpg
-│   │   │       ├── python.jpg
-│   │   │       ├── react.jpg
-│   │   │       ├── machinelearning.jpg
-│   │   │       └── datascience.jpg
-│   │   │
-│   │   ├── components
-│   │   │       Navbar.jsx
-│   │   │       ProductCard.jsx
-│   │   │       ProductCard.css
-│   │   │
-│   │   ├── data
-│   │   │       products.js
-│   │   │
-│   │   ├── pages
-│   │   │       Landing.jsx
-│   │   │       Login.jsx
-│   │   │       Register.jsx
-│   │   │       Dashboard.jsx
-│   │   │
-│   │   ├── App.jsx
-│   │   ├── main.jsx
-│   │   └── index.css
-│   │
-│   ├── package.json
-│   └── vite.config.js
-│
-├── backend (Coming Soon)
-│   │
-│   ├── controllers
-│   ├── models
-│   ├── routes
-│   ├── middleware
-│   ├── config
-│   ├── server.js
-│   └── package.json
-│
-└── README.md
-```
+Users can:
+
+- Search products
+- Filter products by category
+- View product details
+- Discover recommended products
+- Explore personalized recommendations
 
 ---
 
-# Installation
+## ❤️ Wishlist
 
-Clone Repository
-
-```bash
-git clone https://github.com/kalakanhuswain18-hub/SmartReco.git
-```
-
-Go into project
-
-```bash
-cd SmartReco/frontend
-```
-
-Install dependencies
-
-```bash
-npm install
-```
-
-Run project
-
-```bash
-npm run dev
-```
+Users can add products to their wishlist and remove them whenever required.
 
 ---
 
-# Current Progress
+## 🛒 Shopping Flow
 
-- Landing Page
-- Login Page
-- Register Page
-- Navbar
-- Routing
-- Dashboard
-- Search Bar
-- Product Cards
-- AI Match Badge
-- Responsive Design
+SmartReco provides a complete prototype shopping workflow:
 
----
-
-# Roadmap
-
-### Phase 1
-
-- Authentication
-- Dashboard UI
-- Search
-- Product Cards
-
-### Phase 2
-
-- Category Filter
-- Product Details
-- Recently Viewed
-- Favorites
-
-### Phase 3
-
-- User Behavior Tracking
-- Click Tracking
-- Search Tracking
-- Time Spent Tracking
-
-### Phase 4
-
-- AI Recommendation Engine
-- Personalized Recommendation
-- AI Generated Persuasive Message
-
-### Phase 5
-
-- Backend APIs
-- MongoDB
-- User Profiles
-- Recommendation History
-
----
-
-# Future Scope
-
-- Real-time Recommendations
-- Collaborative Filtering
-- Content-based Recommendation
-- AI Behavioral Analysis
-- Analytics Dashboard
-- Admin Panel
-
----
-
-# Author
-
-Kalakanhu Swain
-
-B.Tech CSE Student
-
-Machine Learning & AI Enthusiast
-
-GitHub
-
-https://github.com/kalakanhuswain18-hub
-
----
-
-# License
-
-This project is developed for educational and hackathon purposes.
+```text
+Product Discovery
+       ↓
+Product Details
+       ↓
+Wishlist / Buy Now
+       ↓
+Checkout
+       ↓
+Place Order
+       ↓
+My Orders
