@@ -8,13 +8,21 @@ Instead of showing the same products to every user, SmartReco analyzes interacti
 
 ---
 
-## 🚀 Live Project
+## 🚀 Project Overview
 
-> Add your deployed frontend URL here after deployment.
+SmartReco combines a modern React frontend with a Flask backend and an AI-powered recommendation system.
 
-**Frontend:** `Coming Soon`
+The platform provides:
 
-**Backend API:** `Coming Soon`
+- Personalized AI recommendations
+- User authentication
+- Behaviour tracking
+- Product search and category filtering
+- Wishlist management
+- Product details
+- Checkout flow
+- Order management
+- AI-powered recommendation insights
 
 ---
 
@@ -111,40 +119,3 @@ Checkout
 Place Order
        ↓
 My Orders
-             USER
-               │
-               ▼
-       ┌─────────────────┐
-       │ User Behaviour  │
-       │                 │
-       │ • Views         │
-       │ • Searches      │
-       │ • Wishlist      │
-       │ • Categories    │
-       └────────┬────────┘
-                │
-                ▼
-       ┌─────────────────┐
-       │ Recommendation  │
-       │     Engine      │
-       └────────┬────────┘
-                │
-                ▼
-       ┌─────────────────┐
-       │    ChromaDB     │
-       │ Vector Storage  │
-       └────────┬────────┘
-                │
-                ▼
-       ┌─────────────────┐
-       │   AI / Mesh API │
-       └────────┬────────┘
-                │
-                ▼
-       ┌─────────────────┐
-       │ Personalized    │
-       │ Recommendations │
-       └────────┬────────┘
-                │
-                ▼
-              USER
