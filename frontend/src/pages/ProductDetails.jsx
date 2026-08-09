@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import {getProductById,getProducts,} from "../services/api";
 import {
-  toggleWishlist,
-  isWishlisted,
-} from "../utils/wishlist";
-
+  getProductById,
+  getProducts,
+  addToWishlist,
+  addEvent,
+} from "../services/api";
 
 function ProductDetails() {
   const { id } = useParams();
@@ -32,6 +32,26 @@ useEffect(() => {
 
     setLoading(false);
 
+    const user = JSON.parse(
+      localStorage.getItem("smartreco_user") || "{}"
+    );
+
+    if (user.id && productData) {
+      try {
+        await addEvent(
+          user.id,
+          productData.id,
+          "view"
+        );
+
+        console.log("Product view event saved");
+      } catch (error) {
+        console.error(
+          "Failed to save view event:",
+          error
+        );
+      }
+    }
   }
 
   loadProduct();
@@ -41,13 +61,8 @@ useEffect(() => {
 
   if (product) {
 
-    setSelectedImage(
-      product.images?.[0] || product.thumbnail
-    );
-
-    setWishlisted(
-      isWishlisted(product.id)
-    );
+    setSelectedImage(product.image);
+    setWishlisted(false);
 
   }
 
@@ -88,26 +103,41 @@ if (!product) {
 }
 
  
-const handleWishlist = () => {
-
+const handleWishlist = async () => {
   if (!product) return;
 
-  if (wishlisted) {
+  const user = JSON.parse(
+    localStorage.getItem("smartreco_user") || "{}"
+  );
 
-    navigate("/wishlist");
-
+  if (!user.id) {
+    alert("Please login first.");
+    navigate("/login");
     return;
-
   }
 
-  toggleWishlist(product);
+  if (wishlisted) {
+    navigate("/wishlist");
+    return;
+  }
 
-  setWishlisted(true);
+  try {
+    await addToWishlist(user.id, product.id);
+await addEvent(
+  user.id,
+  product.id,
+  "wishlist"
+);
 
+    setWishlisted(true);
+
+    alert("Product added to wishlist ❤️");
+
+  } catch (error) {
+    console.error("Wishlist error:", error);
+    alert(error.message || "Failed to add product to wishlist.");
+  }
 };
-const recommendationScore = product
-  ? Math.floor(product.rating * 20)
-  : 0;
   return (
     <>
       <div className="container py-5 mb-5">
@@ -121,7 +151,7 @@ const recommendationScore = product
             <div className="card shadow-sm p-3">
 
              <img
-  src={selectedImage || product.thumbnail}
+  src={selectedImage || product.image}
   alt={product.title}
                 className="img-fluid rounded"
                 style={{
@@ -129,35 +159,6 @@ const recommendationScore = product
                   objectFit: "contain",
                 }}
               />
-
-            </div>
-
-            <div className="row mt-3">
-
-              {product.images?.map((img, index) => (
-
-                <div
-                  className="col-3"
-                  key={index}
-                >
-
-                  <img
-                    src={img}
-                    alt=""
-                    className="img-fluid border rounded"
-                    style={{
-                      cursor: "pointer",
-                      height: "90px",
-                      objectFit: "contain",
-                    }}
-                    onClick={() =>
-                      setSelectedImage(img)
-                    }
-                  />
-
-                </div>
-
-              ))}
 
             </div>
 
@@ -339,10 +340,10 @@ const recommendationScore = product
           <div className="card h-100 shadow-sm product-card">
 
             <img
-              src={item.thumbnail}
-              alt={item.title}
-              className="product-image"
-            />
+  src={item.image}
+  alt={item.title}
+  className="product-image"
+/>
 
             <div className="card-body">
 

@@ -1,13 +1,35 @@
-import { Link, useParams } from "react-router-dom";
-import products from "../data/products";
+import { Link, useParams, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { getProductById } from "../services/api";
 
 function BuyNow() {
   const { id } = useParams();
+  const navigate = useNavigate();
 
-  const product = products.find(
-    (item) => item.id === Number(id)
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadProduct() {
+      try {
+        const data = await getProductById(id);
+        setProduct(data);
+      } catch (error) {
+        console.error("Error loading product:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadProduct();
+  }, [id]);
+if (loading) {
+  return (
+    <div className="container py-5 text-center">
+      <h3>Loading Product...</h3>
+    </div>
   );
-
+}
   if (!product) {
     return (
       <div className="container py-5 text-center">
@@ -31,8 +53,6 @@ function BuyNow() {
       </h2>
 
       <div className="row g-5">
-
-        {/* Address */}
 
         <div className="col-lg-7">
 
@@ -222,17 +242,64 @@ function BuyNow() {
                 </small>
 
               </div>
+<button
+  className="btn btn-primary w-100 mt-3"
+  style={{
+    height: "55px",
+    borderRadius: "15px",
+    fontWeight: "600"
+  }}
+  onClick={async () => {
 
-              <button
-                className="btn btn-primary w-100 mt-3"
-                style={{
-                  height: "55px",
-                  borderRadius: "15px",
-                  fontWeight: "600"
-                }}
-              >
-                ⚡ Place Order
-              </button>
+    const user = JSON.parse(
+      localStorage.getItem("smartreco_user") || "{}"
+    );
+
+    if (!user.id) {
+      alert("Please login first.");
+      return;
+    }
+
+    try {
+
+      const response = await fetch(
+        "http://127.0.0.1:5000/orders",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            user_id: user.id,
+            product_id: product.id
+          })
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          data.message || "Failed to place order"
+        );
+      }
+
+      alert("Order placed successfully! 🎉");
+
+      navigate("/orders");
+
+    } catch (error) {
+
+      console.error("Order error:", error);
+
+      alert(
+        error.message || "Something went wrong."
+      );
+    }
+  }}
+>
+  ⚡ Place Order
+</button>
 
             </div>
 

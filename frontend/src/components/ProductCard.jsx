@@ -26,7 +26,6 @@ function ProductCard({ product }) {
   return (
     <div className="card product-card shadow-sm position-relative">
 
-      {/* Floating Heart */}
 
       <span
         onClick={handleWishlist}
