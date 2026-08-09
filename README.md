@@ -121,8 +121,9 @@ Place Order
 My Orders
 ```
 
-```text
+
 # 📁 Project Structure
+```text
 SmartReco/
 │
 ├── backend/
