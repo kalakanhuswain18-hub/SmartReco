@@ -111,3 +111,40 @@ Checkout
 Place Order
        ↓
 My Orders
+             USER
+               │
+               ▼
+       ┌─────────────────┐
+       │ User Behaviour  │
+       │                 │
+       │ • Views         │
+       │ • Searches      │
+       │ • Wishlist      │
+       │ • Categories    │
+       └────────┬────────┘
+                │
+                ▼
+       ┌─────────────────┐
+       │ Recommendation  │
+       │     Engine      │
+       └────────┬────────┘
+                │
+                ▼
+       ┌─────────────────┐
+       │    ChromaDB     │
+       │ Vector Storage  │
+       └────────┬────────┘
+                │
+                ▼
+       ┌─────────────────┐
+       │   AI / Mesh API │
+       └────────┬────────┘
+                │
+                ▼
+       ┌─────────────────┐
+       │ Personalized    │
+       │ Recommendations │
+       └────────┬────────┘
+                │
+                ▼
+              USER
