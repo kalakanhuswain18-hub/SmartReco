@@ -15,7 +15,6 @@ function Login() {
 
     setError("");
 
-    // Basic validation
     if (!email || !password) {
       setError("Please enter email and password.");
       return;
@@ -45,12 +44,10 @@ function Login() {
         return;
       }
 
-      // Save logged-in user
       localStorage.setItem("smartreco_user", JSON.stringify(data.user));
 
       console.log("Login successful:", data);
 
-      // Go to dashboard
       navigate("/Dashboard");
 
     } catch (err) {
@@ -68,7 +65,6 @@ function Login() {
 
       <div className="w-full max-w-5xl bg-white rounded-3xl shadow-2xl overflow-hidden grid md:grid-cols-2">
 
-        {/* LEFT SIDE */}
         <div className="hidden md:flex flex-col justify-center bg-gradient-to-br from-blue-600 to-indigo-700 text-white p-12">
 
           <div className="mb-10">
@@ -149,10 +145,8 @@ function Login() {
           </div>
         </div>
 
-        {/* RIGHT SIDE */}
         <div className="p-8 sm:p-12 flex flex-col justify-center">
 
-          {/* Mobile Logo */}
           <div className="flex md:hidden items-center justify-center gap-2 mb-8">
             <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-xl">
               🤖
@@ -173,17 +167,14 @@ function Login() {
             </p>
           </div>
 
-          {/* LOGIN FORM */}
           <form onSubmit={handleLogin}>
 
-            {/* ERROR MESSAGE */}
             {error && (
               <div className="mb-5 bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-xl text-sm">
                 {error}
               </div>
             )}
 
-            {/* EMAIL */}
             <div className="mb-5">
               <label className="block text-sm font-semibold text-gray-700 mb-2">
                 Email Address
@@ -198,7 +189,6 @@ function Login() {
               />
             </div>
 
-            {/* PASSWORD */}
             <div className="mb-3">
 
               <div className="flex justify-between items-center mb-2">
@@ -224,7 +214,6 @@ function Login() {
 
             </div>
 
-            {/* LOGIN BUTTON */}
             <button
               type="submit"
               disabled={loading}
@@ -239,7 +228,6 @@ function Login() {
 
           </form>
 
-          {/* REGISTER */}
           <p className="text-center text-gray-500 mt-7">
             Don't have an account?{" "}
             <button

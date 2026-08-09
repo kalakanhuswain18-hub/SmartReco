@@ -198,13 +198,16 @@ function Landing() {
           }
 
           .hero-title {
-            letter-spacing: -1px;
+            letter-spacing: -1;
+            width: auto;
+
           }
 
           .hero-image {
   animation: float 4s ease-in-out infinite;
   transition: transform 0.4s ease;
   mix-blend-mode: multiply;
+
   
 }
         }
@@ -212,7 +215,6 @@ function Landing() {
 
       <Navbar />
 
-      {/* HERO */}
       <section className="hero-section container">
 
         <div className="floating-orb orb-one"></div>
@@ -220,8 +222,7 @@ function Landing() {
 
         <div className="row align-items-center g-5 w-100">
 
-          {/* LEFT */}
-          <div className="col-lg-6 hero-content">
+          <div className="col-lg-7 hero-content">
 
             <div
               className="badge bg-primary bg-opacity-10 text-primary px-3 py-2 mb-4"
@@ -234,7 +235,7 @@ function Landing() {
             </div>
 
             <h1 className="fw-bold mb-4 hero-title">
-              AI Powered
+              AI Shopping
               <br />
               Recommendation
               <br />
@@ -242,8 +243,7 @@ function Landing() {
             </h1>
 
             <p className="text-secondary mb-4 hero-description">
-              Discover products tailored to your interests using intelligent
-              recommendation and user behaviour analysis.
+              Discover products tailored to your interests using intelligent recommendations and user behaviour analysis.
             </p>
 
             <Link
@@ -260,13 +260,17 @@ function Landing() {
 
           </div>
 
-          <div className="col-lg-6 text-center">
+          <div className="col-lg-5 text-center">
 
-       <img
+    <img
   src={heroImage}
   alt="AI Recommendation"
   className="img-fluid hero-image"
-  style={{ maxHeight: "500px" }}
+  style={{
+    maxHeight: "540px",
+    width: "100%",
+    borderRadius: "10%",
+  }}
 />
 
           </div>
@@ -297,7 +301,6 @@ function Landing() {
 
         <div className="row g-4">
 
-          {/* CARD 1 */}
           <div className="col-md-4">
 
             <div className="card feature-card shadow h-100 border-0">
@@ -321,7 +324,6 @@ function Landing() {
 
           </div>
 
-          {/* CARD 2 */}
           <div className="col-md-4">
 
             <div
@@ -348,7 +350,6 @@ function Landing() {
 
           </div>
 
-          {/* CARD 3 */}
           <div className="col-md-4">
 
             <div
@@ -379,7 +380,6 @@ function Landing() {
 
       </section>
 
-      {/* FOOTER */}
       <footer className="smartreco-footer text-white py-5 mt-5">
 
         <div className="container text-center">

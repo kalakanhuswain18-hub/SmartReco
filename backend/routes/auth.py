@@ -1,10 +1,10 @@
 from flask import Blueprint, request, jsonify
 from models import db, User
+from werkzeug.security import generate_password_hash, check_password_hash
 
 auth_bp = Blueprint("auth", __name__)
 
 
-# REGISTER
 @auth_bp.route("/auth/register", methods=["POST"])
 def register():
 
@@ -25,11 +25,10 @@ def register():
         return jsonify({
             "message": "Email already registered"
         }), 409
-
     user = User(
-        username=username,
-        email=email,
-        password=password
+    username=username,
+    email=email,
+    password=generate_password_hash(password)
     )
 
     db.session.add(user)
@@ -45,7 +44,6 @@ def register():
     }), 201
 
 
-# LOGIN
 @auth_bp.route("/auth/login", methods=["POST"])
 def login():
 
@@ -61,7 +59,7 @@ def login():
 
     user = User.query.filter_by(email=email).first()
 
-    if not user or user.password != password:
+    if not user or not check_password_hash(user.password, password):
         return jsonify({
             "message": "Invalid email or password"
         }), 401

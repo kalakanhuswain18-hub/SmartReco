@@ -26,7 +26,6 @@ function Wishlist() {
 
       const data = await getWishlist(user.id);
       setWishlist(data);
-
     } catch (error) {
       console.error("Wishlist error:", error);
       setWishlist([]);
@@ -42,6 +41,7 @@ function Wishlist() {
       );
 
       if (!user.id) {
+        alert("Please login first.");
         return;
       }
 
@@ -88,6 +88,7 @@ function Wishlist() {
       {wishlist.length === 0 ? (
 
         <div className="text-center py-5">
+
           <h3>Your Wishlist is Empty ❤️</h3>
 
           <p className="text-muted">
@@ -100,6 +101,7 @@ function Wishlist() {
           >
             Start Shopping
           </Link>
+
         </div>
 
       ) : (
@@ -133,7 +135,9 @@ function Wishlist() {
 
                   <h5>{product.title}</h5>
 
-                  <p>{product.category}</p>
+                  <p className="text-muted">
+                    {product.category}
+                  </p>
 
                   <h5 className="text-success">
                     ₹{product.price}

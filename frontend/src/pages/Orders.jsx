@@ -67,7 +67,6 @@ function Orders() {
   return (
     <div className="orders-page">
 
-      {/* Header */}
       <div className="orders-header">
 
         <div
@@ -93,7 +92,6 @@ function Orders() {
           <p>View and manage your SmartReco orders</p>
         </div>
 
-        {/* No Orders */}
         {orders.length === 0 ? (
 
           <div className="empty-orders">
@@ -125,7 +123,6 @@ function Orders() {
                 key={order.id}
               >
 
-                {/* Order Header */}
                 <div className="order-top">
 
                   <div>
@@ -152,7 +149,6 @@ function Orders() {
 
                 </div>
 
-                {/* Product */}
                 <div className="order-product">
 
                   <div className="order-product-image">
@@ -189,7 +185,6 @@ function Orders() {
 
                 </div>
 
-                {/* Actions */}
                 <div className="order-actions">
 
                   <button

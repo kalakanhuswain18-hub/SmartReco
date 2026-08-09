@@ -54,7 +54,6 @@ function Register() {
 
       setSuccess("Account created successfully! Redirecting to login...");
 
-      // Go to login after successful registration
       setTimeout(() => {
         navigate("/login");
       }, 1200);
@@ -75,7 +74,6 @@ function Register() {
 
       <div className="w-full max-w-5xl bg-white rounded-3xl shadow-2xl overflow-hidden grid md:grid-cols-2">
 
-        {/* LEFT SIDE */}
         <div className="hidden md:flex flex-col justify-center bg-gradient-to-br from-blue-600 to-indigo-700 text-white p-12">
 
           <div className="mb-10">
@@ -104,7 +102,6 @@ function Register() {
 
           </div>
 
-          {/* FEATURES */}
           <div className="space-y-5">
 
             <div className="flex items-center gap-4">
@@ -158,10 +155,8 @@ function Register() {
           </div>
         </div>
 
-        {/* RIGHT SIDE */}
         <div className="p-8 md:p-12">
 
-          {/* MOBILE LOGO */}
           <div className="flex md:hidden items-center justify-center gap-2 mb-8">
 
             <div className="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center">
@@ -189,14 +184,12 @@ function Register() {
 
             </div>
 
-            {/* ERROR */}
             {error && (
               <div className="mb-5 bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-xl text-sm">
                 {error}
               </div>
             )}
 
-            {/* SUCCESS */}
             {success && (
               <div className="mb-5 bg-green-50 border border-green-200 text-green-600 px-4 py-3 rounded-xl text-sm">
                 {success}
@@ -205,7 +198,6 @@ function Register() {
 
             <form onSubmit={handleRegister}>
 
-              {/* FULL NAME */}
               <div className="mb-5">
 
                 <label className="block text-sm font-semibold text-slate-700 mb-2">
@@ -222,7 +214,6 @@ function Register() {
 
               </div>
 
-              {/* EMAIL */}
               <div className="mb-5">
 
                 <label className="block text-sm font-semibold text-slate-700 mb-2">
@@ -239,7 +230,6 @@ function Register() {
 
               </div>
 
-              {/* PASSWORD */}
               <div className="mb-6">
 
                 <label className="block text-sm font-semibold text-slate-700 mb-2">
@@ -256,7 +246,6 @@ function Register() {
 
               </div>
 
-              {/* REGISTER BUTTON */}
               <button
                 type="submit"
                 disabled={loading}
@@ -271,7 +260,6 @@ function Register() {
 
             </form>
 
-            {/* LOGIN */}
             <p className="text-center text-slate-500 mt-7">
               Already have an account?{" "}
 

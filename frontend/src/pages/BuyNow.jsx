@@ -153,7 +153,6 @@ if (loading) {
 
         </div>
 
-        {/* Order Summary */}
 
         <div className="col-lg-5">
 
