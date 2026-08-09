@@ -119,3 +119,64 @@ Checkout
 Place Order
        ↓
 My Orders
+```
+
+
+# 📁 Project Structure
+SmartReco/
+│
+├── backend/
+│   ├── routes/
+│   │   ├── auth.py
+│   │   ├── products.py
+│   │   ├── recommendations.py
+│   │   ├── events.py
+│   │   ├── wishlist.py
+│   │   └── orders.py
+│   │
+│   ├── services/
+│   │   ├── chroma_service.py
+│   │   └── mesh_service.py
+│   │
+│   ├── app.py
+│   ├── config.py
+│   ├── models.py
+│   ├── requirements.txt
+│   └── .gitignore
+│
+├── frontend/
+│   ├── src/
+│   │   ├── assets/
+│   │   │   └── ai-shopping.png
+│   │   │
+│   │   ├── components/
+│   │   │   ├── Navbar.jsx
+│   │   │   ├── ProductCard.jsx
+│   │   │   └── ProductCard.css
+│   │   │
+│   │   ├── pages/
+│   │   │   ├── Landing.jsx
+│   │   │   ├── Login.jsx
+│   │   │   ├── Register.jsx
+│   │   │   ├── Dashboard.jsx
+│   │   │   ├── ProductDetails.jsx
+│   │   │   ├── Wishlist.jsx
+│   │   │   ├── BuyNow.jsx
+│   │   │   ├── Profile.jsx
+│   │   │   └── Orders.jsx
+│   │   │
+│   │   ├── services/
+│   │   │   └── api.js
+│   │   │
+│   │   ├── utils/
+│   │   │   ├── aiEngine.js
+│   │   │   ├── behavior.js
+│   │   │   └── wishlist.js
+│   │   │
+│   │   ├── App.jsx
+│   │   └── App.css
+│   │
+│   ├── package.json
+│   └── vite.config.js
+│
+└── README.md
