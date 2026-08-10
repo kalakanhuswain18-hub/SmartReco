@@ -48,7 +48,7 @@ function Login() {
 
       console.log("Login successful:", data);
 
-      navigate("/Dashboard");
+     navigate("/dashboard", { replace: true });
 
     } catch (err) {
       console.error("Login error:", err);

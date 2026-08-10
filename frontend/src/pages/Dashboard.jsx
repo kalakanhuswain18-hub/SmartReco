@@ -20,11 +20,30 @@ const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [profileOpen, setProfileOpen] = useState(false);
+  useEffect(() => {
+  const handleOutsideClick = (event) => {
+    if (
+      profileOpen &&
+      !event.target.closest(".profile-wrapper")
+    ) {
+      setProfileOpen(false);
+    }
+  };
+
+  document.addEventListener("mousedown", handleOutsideClick);
+
+  return () => {
+    document.removeEventListener("mousedown", handleOutsideClick);
+  };
+}, [profileOpen]);
   const [aiInsights, setAiInsights] = useState(null);
 const [recentActivity, setRecentActivity] = useState([]);
 const [aiRecommendation, setAiRecommendation] = useState(null);
 
-  const user = JSON.parse(localStorage.getItem("user") || "null");
+const user = JSON.parse(
+  localStorage.getItem("smartreco_user") || "null"
+);
+ 
   const saveSearchEvent = async (query) => {
   if (!user?.id || !query.trim()) return;
 

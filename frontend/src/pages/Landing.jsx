@@ -1,7 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import heroImage from "../assets/ai-shopping.png";
 function Landing() {
+    const navigate = useNavigate();
+
+  const handleGetStarted = () => {
+    const user = localStorage.getItem("smartreco_user");
+
+    if (user) {
+      navigate("/dashboard");
+    } else {
+      navigate("/login");
+    }
+  };
   return (
     <div className="smartreco-landing">
 
@@ -246,17 +257,17 @@ function Landing() {
               Discover products tailored to your interests using intelligent recommendations and user behaviour analysis.
             </p>
 
-            <Link
-              to="/login"
-              className="btn btn-primary btn-lg px-5 py-3 get-started-btn"
-              style={{
-                borderRadius: "14px",
-                fontWeight: "600"
-              }}
-            >
-              Get Started
-              <span className="ms-2">→</span>
-            </Link>
+           <button
+  onClick={handleGetStarted}
+  className="btn btn-primary btn-lg px-5 py-3 get-started-btn"
+  style={{
+    borderRadius: "14px",
+    fontWeight: "600"
+  }}
+>
+  Get Started
+  <span className="ms-2">→</span>
+</button>
 
           </div>
 

@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-
+import ProtectedRoute from "./components/ProtectedRoute";
 import Landing from "./pages/Landing";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -22,6 +22,12 @@ function App() {
       <Route path="/profile" element={<Profile />} />
       <Route path="/buy/:id" element={<BuyNow />} />
       <Route path="/orders" element={<Orders />} />
+      <Route path="/dashboard" element={
+    <ProtectedRoute>
+      <Dashboard />
+    </ProtectedRoute>
+  }
+/>
     </Routes>
   );
 }
