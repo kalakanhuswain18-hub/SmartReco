@@ -1,7 +1,7 @@
 import os
 
 class Config:
-    SECRET_KEY = "smartreco123"
+    SECRET_KEY = os.getenv("SECRET_KEY", "dev-secret-key")
 
     BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
