@@ -4,14 +4,15 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-  "dev": "concurrently \"npm run frontend\" \"npm run backend\"",
-  "frontend": "vite",
-  "backend": "cd ../backend && python app.py",
-  "build": "vite build",
-  "lint": "oxlint",
-  "preview": "vite preview"
-},
+    "dev": "concurrently \"npm run frontend\" \"npm run backend\"",
+    "frontend": "vite",
+    "backend": "cd ../backend && python app.py",
+    "build": "vite build",
+    "lint": "oxlint",
+    "preview": "vite preview"
+  },
   "dependencies": {
+    "bootstrap": "^5.3.8",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-router-dom": "^7.18.2"
