@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
 
+const BASE_URL = import.meta.env.VITE_API_URL;
+
 function Orders() {
   const navigate = useNavigate();
 
@@ -25,7 +27,7 @@ function Orders() {
       }
 
       const response = await fetch(
-        `http://127.0.0.1:5000/orders/${user.id}`
+        `${BASE_URL}/orders/${user.id}`
       );
 
       const data = await response.json();

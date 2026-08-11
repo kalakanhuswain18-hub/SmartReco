@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+const BASE_URL = import.meta.env.VITE_API_URL;
+
 function Register() {
   const navigate = useNavigate();
 
@@ -26,27 +28,22 @@ function Register() {
     try {
       setLoading(true);
 
-      const response = await fetch(
-        "http://127.0.0.1:5000/auth/register",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            username: username,
-            email: email,
-            password: password,
-          }),
-        }
-      );
+      const response = await fetch(`${BASE_URL}/auth/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: username,
+          email: email,
+          password: password,
+        }),
+      });
 
       const data = await response.json();
 
       if (!response.ok) {
-        setError(
-          data.message || "Registration failed. Please try again."
-        );
+        setError(data.message || "Registration failed. Please try again.");
         return;
       }
 
@@ -57,12 +54,11 @@ function Register() {
       setTimeout(() => {
         navigate("/login");
       }, 1200);
-
     } catch (err) {
       console.error("Registration error:", err);
 
       setError(
-        "Unable to connect to server. Please make sure backend is running."
+        "Unable to connect to server. Please make sure backend is running.",
       );
     } finally {
       setLoading(false);
@@ -71,39 +67,29 @@ function Register() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 flex items-center justify-center px-6 py-10">
-
       <div className="w-full max-w-5xl bg-white rounded-3xl shadow-2xl overflow-hidden grid md:grid-cols-2">
-
         <div className="hidden md:flex flex-col justify-center bg-gradient-to-br from-blue-600 to-indigo-700 text-white p-12">
-
           <div className="mb-10">
-
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center text-2xl">
                 🤖
               </div>
 
-              <h1 className="text-3xl font-bold">
-                SmartReco
-              </h1>
+              <h1 className="text-3xl font-bold">SmartReco</h1>
             </div>
 
             <h2 className="text-4xl font-bold leading-tight mb-5">
               Shop smarter with
-              <span className="text-blue-200">
-                {" "}AI recommendations.
-              </span>
+              <span className="text-blue-200"> AI recommendations.</span>
             </h2>
 
             <p className="text-blue-100 text-lg leading-relaxed">
-              Create your account and get personalized product
-              recommendations based on your interests and activity.
+              Create your account and get personalized product recommendations
+              based on your interests and activity.
             </p>
-
           </div>
 
           <div className="space-y-5">
-
             <div className="flex items-center gap-4">
               <div className="w-11 h-11 rounded-xl bg-white/15 flex items-center justify-center">
                 ✨
@@ -126,9 +112,7 @@ function Register() {
               </div>
 
               <div>
-                <h3 className="font-semibold text-lg">
-                  Smart Wishlist
-                </h3>
+                <h3 className="font-semibold text-lg">Smart Wishlist</h3>
 
                 <p className="text-blue-100 text-sm">
                   Save your favorite products for later.
@@ -142,46 +126,34 @@ function Register() {
               </div>
 
               <div>
-                <h3 className="font-semibold text-lg">
-                  Easy Shopping
-                </h3>
+                <h3 className="font-semibold text-lg">Easy Shopping</h3>
 
                 <p className="text-blue-100 text-sm">
                   Discover and buy products easily.
                 </p>
               </div>
             </div>
-
           </div>
         </div>
 
         <div className="p-8 md:p-12">
-
           <div className="flex md:hidden items-center justify-center gap-2 mb-8">
-
             <div className="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center">
               🤖
             </div>
 
-            <h1 className="text-2xl font-bold text-slate-900">
-              SmartReco
-            </h1>
-
+            <h1 className="text-2xl font-bold text-slate-900">SmartReco</h1>
           </div>
 
           <div className="max-w-md mx-auto">
-
             <div className="mb-8">
-
               <h1 className="text-4xl font-bold text-slate-900 mb-3">
                 Create Account
               </h1>
 
               <p className="text-slate-500">
-                Join SmartReco and start discovering products
-                made for you.
+                Join SmartReco and start discovering products made for you.
               </p>
-
             </div>
 
             {error && (
@@ -197,9 +169,7 @@ function Register() {
             )}
 
             <form onSubmit={handleRegister}>
-
               <div className="mb-5">
-
                 <label className="block text-sm font-semibold text-slate-700 mb-2">
                   Full Name
                 </label>
@@ -211,11 +181,9 @@ function Register() {
                   onChange={(e) => setUsername(e.target.value)}
                   className="w-full border border-slate-300 px-4 py-3.5 rounded-xl outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
                 />
-
               </div>
 
               <div className="mb-5">
-
                 <label className="block text-sm font-semibold text-slate-700 mb-2">
                   Email Address
                 </label>
@@ -227,11 +195,9 @@ function Register() {
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full border border-slate-300 px-4 py-3.5 rounded-xl outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
                 />
-
               </div>
 
               <div className="mb-6">
-
                 <label className="block text-sm font-semibold text-slate-700 mb-2">
                   Password
                 </label>
@@ -243,7 +209,6 @@ function Register() {
                   onChange={(e) => setPassword(e.target.value)}
                   className="w-full border border-slate-300 px-4 py-3.5 rounded-xl outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
                 />
-
               </div>
 
               <button
@@ -257,24 +222,19 @@ function Register() {
               >
                 {loading ? "Creating Account..." : "Create Account"}
               </button>
-
             </form>
 
             <p className="text-center text-slate-500 mt-7">
               Already have an account?{" "}
-
               <button
                 onClick={() => navigate("/login")}
                 className="text-blue-600 font-semibold cursor-pointer hover:underline"
               >
                 Login
               </button>
-
             </p>
-
           </div>
         </div>
-
       </div>
     </div>
   );

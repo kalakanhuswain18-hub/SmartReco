@@ -1,6 +1,7 @@
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getProductById } from "../services/api";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 function BuyNow() {
   const { id } = useParams();
@@ -262,7 +263,7 @@ if (loading) {
     try {
 
       const response = await fetch(
-        "http://127.0.0.1:5000/orders",
+        `${BASE_URL}/orders`,
         {
           method: "POST",
           headers: {

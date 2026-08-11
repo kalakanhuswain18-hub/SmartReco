@@ -2,6 +2,8 @@ import "../App.css";
 import { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
 import { getProducts } from "../services/api";
+
+const BASE_URL = import.meta.env.VITE_API_URL;
 function formatCategory(category) {
 
   return category
@@ -48,7 +50,7 @@ const user = JSON.parse(
   if (!user?.id || !query.trim()) return;
 
   try {
-    await fetch("http://127.0.0.1:5000/events", {
+    await fetch(`${BASE_URL}/events`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -95,7 +97,7 @@ const user = JSON.parse(
       if (userData?.id) {
 
         const insightResponse = await fetch(
-          `http://127.0.0.1:5000/insights/${userData.id}`
+          `${BASE_URL}/insights/${userData.id}`
         );
 
         if (insightResponse.ok) {
@@ -132,7 +134,7 @@ setProducts(personalizedProducts);
 
 
         const eventResponse = await fetch(
-          `http://127.0.0.1:5000/events/${userData.id}`
+          `${BASE_URL}/events/${userData.id}`
         );
 
         if (eventResponse.ok) {
@@ -142,7 +144,7 @@ setProducts(personalizedProducts);
           setRecentActivity(eventData.slice(0, 5));
         }
 const recommendationResponse = await fetch(
-  `http://127.0.0.1:5000/recommend/agent/${userData.id}`
+  `${BASE_URL}/recommend/agent/${userData.id}`
 );
 
 if (recommendationResponse.ok) {
