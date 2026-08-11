@@ -1,19 +1,30 @@
+import os
 from flask import Flask
 from flask_cors import CORS
 from config import Config
 from models import db
+
 from routes.products import products_bp
 from routes.recommendations import recommendation_bp
 from routes.events import events_bp
 from routes.auth import auth_bp
 from routes.wishlist import wishlist_bp
 from routes.orders import orders_bp
-import os
 
 app = Flask(__name__)
 app.config.from_object(Config)
 
-CORS(app, origins=[os.getenv("FRONTEND_URL")])
+FRONTEND_URL = os.getenv(
+    "FRONTEND_URL",
+    "http://localhost:5173"
+)
+
+CORS(
+    app,
+    resources={r"/*": {"origins": FRONTEND_URL}},
+    methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allow_headers=["Content-Type", "Authorization"]
+)
 
 db.init_app(app)
 
@@ -27,6 +38,7 @@ app.register_blueprint(auth_bp)
 app.register_blueprint(wishlist_bp)
 app.register_blueprint(orders_bp)
 
+
 @app.route("/")
 def home():
     return {
@@ -34,6 +46,7 @@ def home():
         "status": "Running",
         "message": "Welcome to SmartReco API"
     }
+
 
 if __name__ == "__main__":
     app.run(debug=True)
