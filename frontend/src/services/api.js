@@ -1,4 +1,4 @@
-const BASE_URL = "http://127.0.0.1:5000";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 export async function getProducts() {
   try {
@@ -11,7 +11,6 @@ export async function getProducts() {
     const data = await response.json();
 
     return data;
-
   } catch (error) {
     console.error("Error fetching products:", error);
     return [];
@@ -28,7 +27,6 @@ export async function getProductById(id) {
     const data = await response.json();
 
     return data;
-
   } catch (error) {
     console.error("Error fetching product:", error);
     return null;
@@ -55,7 +53,6 @@ export async function addToWishlist(userId, productId) {
   return data;
 }
 
-
 export async function getWishlist(userId) {
   const response = await fetch(`${BASE_URL}/wishlist/${userId}`);
 
@@ -68,14 +65,10 @@ export async function getWishlist(userId) {
   return data;
 }
 
-
 export async function removeFromWishlist(userId, productId) {
-  const response = await fetch(
-    `${BASE_URL}/wishlist/${userId}/${productId}`,
-    {
-      method: "DELETE",
-    }
-  );
+  const response = await fetch(`${BASE_URL}/wishlist/${userId}/${productId}`, {
+    method: "DELETE",
+  });
 
   const data = await response.json();
 
