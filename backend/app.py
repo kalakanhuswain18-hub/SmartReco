@@ -14,14 +14,15 @@ from routes.orders import orders_bp
 app = Flask(__name__)
 app.config.from_object(Config)
 
-FRONTEND_URL = os.getenv(
-    "FRONTEND_URL",
-    "http://localhost:5173"
-)
+FRONTEND_URLS = [
+    "http://localhost:5173",
+    "https://smart-reco-eight.vercel.app",
+    "https://smart-reco-gfyvpydhh-kk-416d.vercel.app",
+]
 
 CORS(
     app,
-    resources={r"/*": {"origins": FRONTEND_URL}},
+    resources={r"/*": {"origins": FRONTEND_URLS}},
     methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["Content-Type", "Authorization"]
 )
