@@ -160,7 +160,6 @@ def sync_products():
 
     products = Product.query.all()
 
-    # Purana vector data delete
     try:
         all_data = collection.get()
 
@@ -231,23 +230,20 @@ def import_products():
     for item in products:
 
         product = Product(
-            name=item.get("title"),
-            description=item.get("description"),
-            category=item.get("category"),
-            price=item.get("price"),
-            image=item.get("thumbnail")
-        )
+        name=item.get("title"),
+        description=item.get("description"),
+        category=item.get("category"),
+        price=item.get("price"),
+        image=item.get("thumbnail")
+    )
 
-        db.session.add(product)
-        db.session.flush()
+    db.session.add(product)
 
-        add_product_to_vector(product)
-
-        imported += 1
+    imported += 1
 
     db.session.commit()
 
     return jsonify({
-        "message": "Products imported successfully",
-        "imported": imported
-    }), 201
+    "message": "Products imported successfully",
+    "imported": imported
+}), 201
