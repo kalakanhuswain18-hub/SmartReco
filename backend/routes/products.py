@@ -222,28 +222,34 @@ def import_products():
         }), 502
 
     external_data = response.json()
-
     products = external_data.get("products", [])
 
     imported = 0
 
     for item in products:
 
+        # Avoid duplicate products
+        existing_product = Product.query.filter_by(
+            name=item.get("title")
+        ).first()
+
+        if existing_product:
+            continue
+
         product = Product(
-        name=item.get("title"),
-        description=item.get("description"),
-        category=item.get("category"),
-        price=item.get("price"),
-        image=item.get("thumbnail")
-    )
+            name=item.get("title"),
+            description=item.get("description"),
+            category=item.get("category"),
+            price=item.get("price"),
+            image=item.get("thumbnail")
+        )
 
-    db.session.add(product)
-
-    imported += 1
+        db.session.add(product)
+        imported += 1
 
     db.session.commit()
 
     return jsonify({
-    "message": "Products imported successfully",
-    "imported": imported
-}), 201
+        "message": "Products imported successfully",
+        "imported": imported
+    }), 201

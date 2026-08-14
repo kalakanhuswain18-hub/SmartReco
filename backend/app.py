@@ -16,8 +16,6 @@ app.config.from_object(Config)
 
 FRONTEND_URLS = [
     "http://localhost:5173",
-    "https://smart-reco-eight.vercel.app",
-    "https://smart-reco-gfyvpydhh-kk-416d.vercel.app",
 ]
 
 CORS(
